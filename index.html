@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova Shop — Modern Fashion & Lifestyle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #0a0a0a;
+      --offblack: #111111;
+      --charcoal: #1c1c1c;
+      --mid:      #5a5a5a;
+      --silver:   #a8a8a8;
+      --smoke:    #e8e6e1;
+      --white:    #fafaf8;
+      --gold:     #b8973a;
+      --gold-lt:  #d4af5a;
+      --gold-dim: rgba(184,151,58,0.15);
+      --radius:   3px;
+      --serif:    'Cormorant Garamond', Georgia, serif;
+      --sans:     'Jost', sans-serif;
+      --nav-h:    70px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--black);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: var(--white);
+      border-bottom: 1px solid var(--smoke);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      z-index: 900;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-icon {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--charcoal);
+      transition: color 0.2s;
+      padding: 4px;
+      display: flex;
+    }
+
+    .nav-icon:hover { color: var(--gold); }
+
+    .nav-icon svg { width: 20px; height: 20px; }
+
+    .cart-badge {
+      position: relative;
+    }
+
+    .cart-badge::after {
+      content: '3';
+      position: absolute;
+      top: -6px; right: -8px;
+      background: var(--gold);
+      color: var(--white);
+      font-size: 9px;
+      font-weight: 600;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── HERO ──────────────────────────────────── */
+    .hero {
+      margin-top: var(--nav-h);
+      min-height: calc(100vh - var(--nav-h));
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 60px 80px 80px;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .hero-heading {
+      font-family: var(--serif);
+      font-size: clamp(42px, 5vw, 68px);
+      font-weight: 300;
+      line-height: 1.12;
+      margin-bottom: 28px;
+    }
+
+    .hero-heading em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--silver);
+      max-width: 380px;
+      line-height: 1.8;
+      margin-bottom: 44px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 14px 32px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-lt);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 14px 32px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero-stat-num {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--gold-lt);
+    }
+
+    .hero-stat-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-top: 2px;
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 40px;
+      right: 36px;
+      background: var(--white);
+      border: 1px solid var(--smoke);
+      padding: 18px 24px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+
+    .hero-badge-val {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .hero-badge-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: 2px;
+    }
+
+    /* ── MARQUEE ────────────────────────────────── */
+    .marquee-wrap {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 16px 0;
+      overflow: hidden;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee-item {
+      flex-shrink: 0;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--silver);
+      padding: 0 36px;
+    }
+
+    .marquee-sep {
+      color: var(--gold);
+      padding: 0 8px;
+    }
+
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── SECTIONS ───────────────────────────────── */
+    section { padding: 96px 80px; }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(32px, 3.5vw, 48px);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+
+    .section-heading em {
+      font-style: italic;
+      color: var(--mid);
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: var(--mid);
+      max-width: 480px;
+      line-height: 1.8;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+    }
+
+    .section-link {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-dim);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+
+    .section-link:hover { border-color: var(--gold); }
+
+    /* ── CATEGORIES ─────────────────────────────── */
+    #categories { background: var(--white); }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+
+    .category-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+      background: var(--charcoal);
+    }
+
+    .category-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease, opacity 0.4s;
+      opacity: 0.82;
+    }
+
+    .category-card:hover img {
+      transform: scale(1.05);
+      opacity: 0.65;
+    }
+
+    .category-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 36px 24px 28px;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
+    }
+
+    .category-name {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--white);
+      display: block;
+    }
+
+    .category-count {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-top: 4px;
+      display: block;
+    }
+
+    .category-arrow {
+      position: absolute;
+      top: 24px; right: 24px;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .category-card:hover .category-arrow {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── FEATURED PRODUCTS ──────────────────────── */
+    #products { background: var(--smoke); }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .product-card {
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: #e0ddd8;
+    }
+
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 1px;
+    }
+
+    .product-tag.sale { background: var(--gold); color: var(--black); }
+
+    .product-actions {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      display: flex;
+      gap: 1px;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .product-actions {
+      transform: translateY(0);
+    }
+
+    .product-action-btn {
+      flex: 1;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      padding: 12px 8px;
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .product-action-btn:hover { background: var(--gold); color: var(--black); }
+
+    .product-info {
+      padding: 20px 22px 24px;
+    }
+
+    .product-name {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+
+    .product-price {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+
+    .product-price .was {
+      text-decoration: line-through;
+      color: var(--silver);
+      margin-right: 8px;
+    }
+
+    .product-price .now { color: var(--gold); }
+
+    /* ── PROMO BANNER ───────────────────────────── */
+    .promo-banner {
+      background: var(--black);
+      color: var(--white);
+      padding: 72px 80px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .promo-label {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .promo-heading {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 300;
+      line-height: 1.2;
+    }
+
+    .promo-heading em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+
+    .promo-sub {
+      font-size: 14px;
+      color: var(--silver);
+      margin-top: 12px;
+      max-width: 520px;
+      line-height: 1.8;
+    }
+
+    /* ── NEWSLETTER ─────────────────────────────── */
+    #newsletter { background: var(--smoke); }
+
+    .newsletter-inner {
+      text-align: center;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      margin-top: 36px;
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      border: none;
+      padding: 14px 20px;
+      font-family: var(--sans);
+      font-size: 14px;
+      background: var(--white);
+      color: var(--black);
+      outline: none;
+    }
+
+    .newsletter-btn {
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      padding: 14px 28px;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .newsletter-btn:hover { background: var(--gold); }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--offblack);
+      color: var(--silver);
+      padding: 80px 80px 40px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-brand {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .footer-brand span { color: var(--gold); }
+
+    .footer-desc {
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--silver);
+      max-width: 260px;
+      margin-bottom: 28px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-link {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--silver);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+    .social-link svg { width: 14px; height: 14px; }
+
+    .footer-col h4 {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--silver);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 32px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── CHATBOT ─────────────────────────────────── */
+    #chat-bubble {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 1000;
+    }
+
+    #chat-toggle {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--black);
+      border: 2px solid var(--gold);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    #chat-toggle:hover {
+      transform: scale(1.06);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.4);
+    }
+
+    #chat-toggle svg { width: 24px; height: 24px; color: var(--white); }
+
+    .chat-notif {
+      position: absolute;
+      top: -3px; right: -3px;
+      width: 14px; height: 14px;
+      background: var(--gold);
+      border-radius: 50%;
+      border: 2px solid var(--white);
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50%       { transform: scale(1.2); opacity: 0.75; }
+    }
+
+    #chat-window {
+      display: none;
+      position: absolute;
+      bottom: 74px;
+      right: 0;
+      width: 380px;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.18);
+      overflow: hidden;
+      flex-direction: column;
+      max-height: 580px;
+      border: 1px solid var(--smoke);
+      animation: chat-in 0.22s ease;
+    }
+
+    #chat-window.open { display: flex; }
+
+    @keyframes chat-in {
+      from { opacity: 0; transform: translateY(12px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .chat-header {
+      background: var(--black);
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: space-between;
+    }
+
+    .chat-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chat-avatar {
+      width: 38px; height: 38px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .chat-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    .chat-subtitle {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 1px;
+    }
+
+    .chat-close {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: color 0.2s;
+      padding: 4px;
+      display: flex;
+    }
+
+    .chat-close:hover { color: var(--white); }
+    .chat-close svg { width: 16px; height: 16px; }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-height: 390px;
+      scroll-behavior: smooth;
+    }
+
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb { background: var(--smoke); border-radius: 4px; }
+
+    .msg {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-width: 86%;
+    }
+
+    .msg.bot { align-self: flex-start; }
+    .msg.user { align-self: flex-end; }
+
+    .msg-bubble {
+      padding: 11px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .msg.bot .msg-bubble {
+      background: #f0ede7;
+      color: var(--black);
+      border-bottom-left-radius: 2px;
+    }
+
+    .msg.user .msg-bubble {
+      background: var(--black);
+      color: var(--white);
+      border-bottom-right-radius: 2px;
+    }
+
+    .msg-time {
+      font-size: 10px;
+      color: var(--silver);
+    }
+
+    .msg.user .msg-time { text-align: right; }
+
+    .chat-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 0 16px 14px;
+    }
+
+    .chat-btn {
+      background: var(--white);
+      border: 1px solid #d8d4cc;
+      color: var(--charcoal);
+      padding: 7px 13px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .chat-btn:hover {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+      color: var(--black);
+    }
+
+    .chat-input-bar {
+      display: flex;
+      border-top: 1px solid var(--smoke);
+      background: var(--white);
+    }
+
+    .chat-input {
+      flex: 1;
+      border: none;
+      padding: 13px 16px;
+      font-family: var(--sans);
+      font-size: 13.5px;
+      color: var(--black);
+      background: transparent;
+      outline: none;
+    }
+
+    .chat-input::placeholder { color: var(--silver); }
+
+    .chat-send {
+      background: none;
+      border: none;
+      padding: 0 16px;
+      color: var(--silver);
+      cursor: pointer;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+    }
+
+    .chat-send:hover { color: var(--gold); }
+    .chat-send svg { width: 18px; height: 18px; }
+
+    /* Typing indicator */
+    .typing-dots {
+      display: inline-flex;
+      gap: 4px;
+      padding: 11px 14px;
+      background: #f0ede7;
+      border-radius: 8px 8px 8px 2px;
+      align-self: flex-start;
+    }
+
+    .typing-dots span {
+      width: 6px; height: 6px;
+      background: var(--silver);
+      border-radius: 50%;
+      animation: bounce-dot 1.2s infinite;
+    }
+
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce-dot {
+      0%, 60%, 100% { transform: translateY(0); }
+      30%            { transform: translateY(-5px); }
+    }
+
+    /* ── PROMO TOOLTIP ───────────────────────────── */
+    .chat-promo {
+      position: absolute;
+      bottom: 72px;
+      right: 0;
+      background: var(--black);
+      color: var(--white);
+      font-size: 12.5px;
+      font-family: var(--sans);
+      padding: 10px 16px;
+      border-radius: 6px;
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      animation: fade-in-up 0.4s ease 1.5s both;
+    }
+
+    .chat-promo::after {
+      content: '';
+      position: absolute;
+      bottom: -6px; right: 22px;
+      border: 6px solid transparent;
+      border-bottom: 0;
+      border-top-color: var(--black);
+    }
+
+    .chat-promo strong { color: var(--gold); }
+
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE (basic) ─────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      section { padding: 64px 24px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 60px 28px; }
+      .hero-right { aspect-ratio: 4/3; }
+      .categories-grid { grid-template-columns: repeat(2,1fr); }
+      .products-grid { grid-template-columns: repeat(2,1fr); }
+      .promo-banner { grid-template-columns: 1fr; padding: 48px 24px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      #chat-window { width: 340px; right: -8px; }
+    }
+
+    @media (max-width: 540px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .categories-grid { grid-template-columns: 1fr 1fr; }
+      .hero-stats { gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────── -->
+<nav>
+  <a href="#" class="nav-logo">Nova <span>Shop</span></a>
+  <ul class="nav-links">
+    <li><a href="#categories">Shop</a></li>
+    <li><a href="#products">New In</a></li>
+    <li><a href="#">Sale</a></li>
+    <li><a href="#">Lookbook</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-icon" aria-label="Search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+      </svg>
+    </button>
+    <button class="nav-icon cart-badge" aria-label="Cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────── -->
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <p class="hero-label">New Collection — Summer 2025</p>
+    <h1 class="hero-heading">Dress With<br><em>Intention.</em><br>Live With<br>Confidence.</h1>
+    <p class="hero-sub">Curated fashion for the woman and man who knows exactly who they are. Premium quality, considered design, effortless style.</p>
+    <div class="hero-ctas">
+      <a href="#categories" class="btn-primary">Shop the Collection</a>
+      <a href="#products" class="btn-outline">Explore New In</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">4,800+</div>
+        <div class="hero-stat-label">Products</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">180+</div>
+        <div class="hero-stat-label">Brands</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">32</div>
+        <div class="hero-stat-label">Countries</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=900&q=85&fit=crop&crop=top" alt="Nova Shop Hero" />
+    <div class="hero-badge">
+      <div class="hero-badge-val">Free Shipping</div>
+      <div class="hero-badge-label">on orders over $75</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ───────────────────────────────────── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Free Returns Within 30 Days <span class="marquee-sep">&#9670;</span></span>
+    <span class="marquee-item">Free Shipping on Orders Over $75 <span class="marquee-sep">&#9670;</span></span>
+    <span class="marquee-item">New Arrivals Every Friday <span class="marquee-sep">&#9670;</span></span>
+    <span class="marquee-item">Secure Checkout <span class="marquee-sep">&#9670;</span></span>
+    <span class="marquee-item">Ships to 32+ Countries <span class="marquee-sep">&#9670;</span></span>
+    <span class="marquee-item">Express Delivery Available <span class="marquee-sep">&#9670;</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Free Returns Within 30 Days <span class="marquee-sep">&#9670;</span></span>
+    <span class="marquee-item">Free Shipping on Orders Over $75 <span class="marquee-sep">&#9670;</span></span>
+    <span class="marquee-item">New Arrivals Every Friday <span class="marquee-sep">&#9670;</span></span>
+    <span class="marquee-item">Secure Checkout <span class="marquee-sep">&#9670;</span></span>
+    <span class="marquee-item">Ships to 32+ Countries <span class="marquee-sep">&#9670;</span></span>
+    <span class="marquee-item">Express Delivery Available <span class="marquee-sep">&#9670;</span></span>
+  </div>
+</div>
+
+<!-- ── CATEGORIES ───────────────────────────────── -->
+<section id="categories">
+  <div class="section-header">
+    <div>
+      <p class="section-label">Browse by Category</p>
+      <h2 class="section-heading">Shop by <em>Style</em></h2>
+    </div>
+    <a href="#" class="section-link">View All Categories</a>
+  </div>
+  <div class="categories-grid">
+    <div class="category-card">
+      <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=600&q=80&fit=crop&crop=top" alt="Women's Fashion" />
+      <div class="category-overlay">
+        <span class="category-name">Women's Fashion</span>
+        <span class="category-count">124 styles</span>
+      </div>
+      <div class="category-arrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </div>
+    <div class="category-card">
+      <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=80&fit=crop&crop=top" alt="Men's Fashion" />
+      <div class="category-overlay">
+        <span class="category-name">Men's Fashion</span>
+        <span class="category-count">98 styles</span>
+      </div>
+      <div class="category-arrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </div>
+    <div class="category-card">
+      <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80&fit=crop" alt="Accessories" />
+      <div class="category-overlay">
+        <span class="category-name">Accessories</span>
+        <span class="category-count">76 styles</span>
+      </div>
+      <div class="category-arrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </div>
+    <div class="category-card">
+      <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&q=80&fit=crop" alt="Sale Items" />
+      <div class="category-overlay">
+        <span class="category-name">Sale Items</span>
+        <span class="category-count">Up to 50% off</span>
+      </div>
+      <div class="category-arrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURED PRODUCTS ─────────────────────────── -->
+<section id="products">
+  <div class="section-header">
+    <div>
+      <p class="section-label">Curated Selection</p>
+      <h2 class="section-heading">Featured <em>Products</em></h2>
+    </div>
+    <a href="#" class="section-link">Shop All</a>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1596783074918-c84cb06531ca?w=600&q=80&fit=crop&crop=top" alt="Floral Wrap Dress" />
+        <span class="product-tag">New In</span>
+        <div class="product-actions">
+          <button class="product-action-btn">Add to Cart</button>
+          <button class="product-action-btn">Quick View</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-name">Floral Wrap Dress</p>
+        <p class="product-price">$45.00</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&q=80&fit=crop&crop=top" alt="Classic Navy Blazer" />
+        <span class="product-tag">Bestseller</span>
+        <div class="product-actions">
+          <button class="product-action-btn">Add to Cart</button>
+          <button class="product-action-btn">Quick View</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-name">Classic Navy Blazer</p>
+        <p class="product-price">$125.00</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80&fit=crop" alt="Leather Crossbody Bag" />
+        <div class="product-actions">
+          <button class="product-action-btn">Add to Cart</button>
+          <button class="product-action-btn">Quick View</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-name">Leather Crossbody Bag</p>
+        <p class="product-price">$78.00</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&q=80&fit=crop&crop=top" alt="High Waist Denim Jeans" />
+        <div class="product-actions">
+          <button class="product-action-btn">Add to Cart</button>
+          <button class="product-action-btn">Quick View</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-name">High Waist Denim Jeans</p>
+        <p class="product-price">$62.00</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80&fit=crop&crop=top" alt="Wool Blend Overcoat" />
+        <span class="product-tag">New In</span>
+        <div class="product-actions">
+          <button class="product-action-btn">Add to Cart</button>
+          <button class="product-action-btn">Quick View</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-name">Wool Blend Overcoat</p>
+        <p class="product-price">$195.00</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80&fit=crop" alt="Oversized Sunglasses" />
+        <span class="product-tag sale">Sale</span>
+        <div class="product-actions">
+          <button class="product-action-btn">Add to Cart</button>
+          <button class="product-action-btn">Quick View</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-name">Summer Maxi Dress</p>
+        <p class="product-price"><span class="was">$65.00</span> <span class="now">$32.00</span></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PROMO BANNER ──────────────────────────────── -->
+<div class="promo-banner">
+  <div>
+    <p class="promo-label">Limited Time Offer</p>
+    <h2 class="promo-heading">Free Standard Shipping<br>on Orders Over <em>$75</em></h2>
+    <p class="promo-sub">Use code <strong style="color:var(--gold-lt)">NOVAFREE</strong> at checkout. Valid on all domestic orders. Express and next-day delivery also available at competitive rates.</p>
+  </div>
+  <div>
+    <a href="#" class="btn-primary" style="font-size:13px; padding:16px 40px;">Shop Now</a>
+  </div>
+</div>
+
+<!-- ── NEWSLETTER ────────────────────────────────── -->
+<section id="newsletter">
+  <div class="newsletter-inner">
+    <p class="section-label" style="text-align:center">Join the Nova Community</p>
+    <h2 class="section-heading" style="text-align:center; font-size:clamp(24px,3vw,36px)">Style Inspiration,<br><em>Delivered to You</em></h2>
+    <p class="section-sub" style="margin:12px auto 0; text-align:center">Subscribe for early access to new collections, exclusive member offers, and style guides curated by our team.</p>
+    <div class="newsletter-form">
+      <input class="newsletter-input" type="email" placeholder="Your email address" />
+      <button class="newsletter-btn">Subscribe</button>
+    </div>
+    <p style="font-size:11px; color:var(--silver); margin-top:12px; text-align:center">No spam. Unsubscribe any time. By signing up you agree to our privacy policy.</p>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────── -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Nova <span>Shop</span></div>
+      <p class="footer-desc">Modern fashion for those who dress with intention. Premium quality, thoughtful design, and a commitment to sustainable practice.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" class="social-link" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
+        </a>
+        <a href="#" class="social-link" aria-label="Pinterest">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.76 1.22-5.17 1.22-5.17s-.31-.62-.31-1.54c0-1.44.84-2.52 1.88-2.52.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.87 3.48-.25 1.04.52 1.89 1.54 1.89 1.85 0 3.28-1.95 3.28-4.76 0-2.49-1.79-4.23-4.35-4.23-2.96 0-4.7 2.22-4.7 4.52 0 .9.35 1.85.78 2.37.09.11.1.2.07.31-.08.33-.26 1.04-.29 1.18-.05.19-.16.23-.37.14-1.39-.65-2.26-2.68-2.26-4.32 0-3.51 2.55-6.74 7.35-6.74 3.86 0 6.86 2.75 6.86 6.42 0 3.83-2.41 6.91-5.76 6.91-1.13 0-2.19-.59-2.55-1.28l-.69 2.6c-.25.97-.93 2.18-1.39 2.91.05.01.1.03.15.04A10 10 0 1012 2z"/></svg>
+        </a>
+        <a href="#" class="social-link" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul class="footer-links">
+        <li><a href="#">Women's Fashion</a></li>
+        <li><a href="#">Men's Fashion</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Sale Items</a></li>
+        <li><a href="#">New Arrivals</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul class="footer-links">
+        <li><a href="#">Track My Order</a></li>
+        <li><a href="#">Returns & Refunds</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Sizing Guide</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul class="footer-links">
+        <li><a href="#">About Nova Shop</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Nova Shop. All rights reserved.</span>
+    <span>Visa &nbsp;|&nbsp; Mastercard &nbsp;|&nbsp; PayPal &nbsp;|&nbsp; Apple Pay</span>
+  </div>
+</footer>
+
+<!-- ── CHATBOT ─────────────────────────────────────── -->
+<div id="chat-bubble">
+  <div class="chat-promo" id="chat-promo">
+    Chat with <strong>Nova</strong> — get instant help
+  </div>
+
+  <button id="chat-toggle" onclick="toggleChat()" aria-label="Open chat">
+    <svg id="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+    </svg>
+    <svg id="icon-close" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+    <div class="chat-notif" id="chat-notif"></div>
+  </button>
+
+  <div id="chat-window">
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="chat-avatar">N</div>
+        <div>
+          <div class="chat-title">Nova &mdash; Shop Assistant</div>
+          <div class="chat-subtitle">Online &middot; Replies instantly</div>
+        </div>
+      </div>
+      <button class="chat-close" onclick="toggleChat()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-btns" id="chat-btns"></div>
+
+    <div class="chat-input-bar">
+      <input class="chat-input" id="chat-input" type="text" placeholder="Type a message..." onkeydown="if(event.key==='Enter') sendUserText()" />
+      <button class="chat-send" onclick="sendUserText()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+//  NOVA SHOP CHATBOT  ·  Pure JS, zero dependencies
+// ─────────────────────────────────────────────
+
+const PRODUCTS = {
+  womens: [
+    { name: 'Floral Wrap Dress',       price: '$45' },
+    { name: 'Classic White Linen Blazer', price: '$89' },
+    { name: 'High Waist Denim Jeans',  price: '$62' },
+    { name: 'Silk Evening Blouse',     price: '$55' },
+    { name: 'Oversized Knit Sweater',  price: '$48' }
+  ],
+  mens: [
+    { name: 'Slim Fit Oxford Shirt',   price: '$52' },
+    { name: 'Casual Linen Trousers',   price: '$68' },
+    { name: 'Classic Navy Blazer',     price: '$125' },
+    { name: 'Graphic Print T-Shirt',   price: '$28' },
+    { name: 'Wool Blend Overcoat',     price: '$195' }
+  ],
+  accessories: [
+    { name: 'Leather Crossbody Bag',   price: '$78' },
+    { name: 'Gold Chain Necklace',     price: '$35' },
+    { name: 'Classic Leather Belt',    price: '$42' },
+    { name: 'Oversized Sunglasses',    price: '$55' },
+    { name: 'Silk Scarf',             price: '$38' }
+  ],
+  sale: [
+    { name: 'Summer Maxi Dress',  price: '$32', was: '$65' },
+    { name: 'Denim Jacket',       price: '$45', was: '$85' },
+    { name: 'Canvas Tote Bag',    price: '$24', was: '$48' },
+    { name: 'Linen Shirt Dress',  price: '$36', was: '$72' }
+  ]
+};
+
+const TRACKING = [
+  (n) => `Your order <strong>#${n}</strong> is currently being processed and will be dispatched within 24 hours. You will receive a shipping confirmation email shortly.`,
+  (n) => `Your order <strong>#${n}</strong> is in transit and on its way to you. Estimated delivery: 3–5 business days. Check your email for the tracking link.`,
+  (n) => `Your order <strong>#${n}</strong> has been successfully delivered to the address on file. If you have not received it, please contact our support team.`
+];
+
+let chatState = 'start';
+let returnStep = 0;
+let returnData = {};
+let lastOrderNum = '';
+let chatOpen = false;
+let promoHidden = false;
+
+// ─── UI helpers ────────────────────────────────
+function getTime() {
+  return new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+}
+
+function addMsg(role, html) {
+  const wrap = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+  div.innerHTML = `<div class="msg-bubble">${html}</div><div class="msg-time">${getTime()}</div>`;
+  wrap.appendChild(div);
+  wrap.scrollTop = wrap.scrollHeight;
+}
+
+function setButtons(btns) {
+  const el = document.getElementById('chat-btns');
+  el.innerHTML = '';
+  btns.forEach(({ label, action }) => {
+    const b = document.createElement('button');
+    b.className = 'chat-btn';
+    b.textContent = label;
+    b.onclick = () => action(label);
+    el.appendChild(b);
+  });
+}
+
+function clearButtons() {
+  document.getElementById('chat-btns').innerHTML = '';
+}
+
+function showTyping() {
+  const wrap = document.getElementById('chat-messages');
+  const dot = document.createElement('div');
+  dot.id = 'typing';
+  dot.className = 'typing-dots';
+  dot.innerHTML = '<span></span><span></span><span></span>';
+  wrap.appendChild(dot);
+  wrap.scrollTop = wrap.scrollHeight;
+}
+
+function hideTyping() {
+  const el = document.getElementById('typing');
+  if (el) el.remove();
+}
+
+function botSay(html, delay, afterCb) {
+  clearButtons();
+  showTyping();
+  setTimeout(() => {
+    hideTyping();
+    addMsg('bot', html);
+    if (afterCb) afterCb();
+  }, delay || 750);
+}
+
+// ─── FLOWS ─────────────────────────────────────
+function showMainMenu() {
+  chatState = 'menu';
+  setButtons([
+    { label: 'Shop Now',           action: () => flowShop() },
+    { label: 'Track My Order',     action: () => flowTrack() },
+    { label: 'Returns & Refunds',  action: () => flowReturns() },
+    { label: 'Shipping Info',      action: () => flowShipping() },
+    { label: 'Contact Support',    action: () => flowContact() }
+  ]);
+}
+
+function flowStart() {
+  botSay(
+    'Welcome to Nova Shop! I\'m <strong>Nova</strong>, your personal style assistant. I\'m here to help you find the perfect look, track your orders, and answer any questions you have.<br><br>How can I help you today?',
+    600,
+    showMainMenu
+  );
+}
+
+function flowShop() {
+  chatState = 'shop';
+  addMsg('user', 'Shop Now');
+  clearButtons();
+  botSay(
+    'Wonderful! What are you shopping for today? Browse our curated categories below.',
+    700,
+    () => setButtons([
+      { label: "Women's Fashion",  action: () => showCategory('womens') },
+      { label: "Men's Fashion",    action: () => showCategory('mens') },
+      { label: 'Accessories',      action: () => showCategory('accessories') },
+      { label: 'Sale Items',       action: () => showCategory('sale') },
+      { label: 'Back to Menu',     action: () => { clearButtons(); addMsg('user','Back to Menu'); botSay('Sure, here\'s the main menu.',400, showMainMenu); } }
+    ])
+  );
+}
+
+function showCategory(cat) {
+  const names = { womens: "Women's Fashion", mens: "Men's Fashion", accessories: 'Accessories', sale: 'Sale Items' };
+  addMsg('user', names[cat]);
+  clearButtons();
+  const items = PRODUCTS[cat];
+  let html = `Here are some popular picks from our <strong>${names[cat]}</strong> collection:<br><br>`;
+  items.slice(0, 4).forEach(p => {
+    if (p.was) {
+      html += `&bull; ${p.name} &mdash; <del style="color:#aaa">${p.was}</del> <strong style="color:var(--gold)">${p.price}</strong><br>`;
+    } else {
+      html += `&bull; ${p.name} &mdash; <strong>${p.price}</strong><br>`;
+    }
+  });
+  html += '<br>Would you like to add something to your cart or explore more?';
+  botSay(html, 800, () => setButtons([
+    { label: 'Add to Cart',    action: () => { addMsg('user','Add to Cart'); botSay('Item added to your cart! You can view your cart at any time using the cart icon in the top navigation.', 600, () => setButtons([
+      { label: 'Continue Shopping', action: () => flowShop() },
+      { label: 'Back to Menu', action: () => { addMsg('user','Back to Menu'); botSay('Of course! Here\'s what I can help you with.', 400, showMainMenu); } }
+    ])); } },
+    { label: 'View More',      action: () => { addMsg('user','View More'); botSay('Our full collection has over 4,800 styles. Visit the shop section above to browse everything by category, filter by size, and sort by price or popularity.', 700, () => setButtons([
+      { label: 'Back to Categories', action: () => flowShop() },
+      { label: 'Back to Menu',       action: () => { addMsg('user','Back to Menu'); botSay('Here\'s the main menu!',400,showMainMenu); } }
+    ])); } },
+    { label: 'Back to Menu',   action: () => { addMsg('user','Back to Menu'); botSay('No problem! Here\'s what I can help you with.',400,showMainMenu); } }
+  ]));
+}
+
+function flowTrack() {
+  chatState = 'track';
+  addMsg('user', 'Track My Order');
+  clearButtons();
+  botSay(
+    'I\'ll look that up for you right away. Please type your <strong>order number</strong> below (e.g. NS-10482) and I\'ll get the latest status.',
+    750
+  );
+}
+
+function handleTracking(orderNum) {
+  lastOrderNum = orderNum.toUpperCase();
+  const index = lastOrderNum.split('').reduce((a, c) => a + c.charCodeAt(0), 0) % 3;
+  const response = TRACKING[index](lastOrderNum);
+  botSay(response, 900, () => setButtons([
+    { label: 'Need More Help', action: () => { addMsg('user','Need More Help'); botSay('Of course — I\'m here to help! What else can I assist you with?', 500, showMainMenu); } },
+    { label: 'Back to Menu',   action: () => { addMsg('user','Back to Menu'); botSay('Here\'s the main menu!', 400, showMainMenu); } }
+  ]));
+}
+
+function flowReturns() {
+  chatState = 'returns_info';
+  returnStep = 0;
+  returnData = {};
+  addMsg('user', 'Returns & Refunds');
+  clearButtons();
+  botSay(
+    '<strong>Nova Shop Return Policy</strong><br><br>' +
+    '&bull; Returns accepted within <strong>30 days</strong> of delivery<br>' +
+    '&bull; Items must be unworn, unwashed, with original tags attached<br>' +
+    '&bull; Refunds processed within <strong>5–7 business days</strong><br>' +
+    '&bull; Exchanges available for different sizes or colours<br><br>' +
+    'Would you like to start a return or exchange?',
+    850,
+    () => setButtons([
+      { label: 'Start a Return',   action: () => startReturn() },
+      { label: 'Start an Exchange', action: () => startReturn(true) },
+      { label: 'Back to Menu',     action: () => { addMsg('user','Back to Menu'); botSay('No problem!', 400, showMainMenu); } }
+    ])
+  );
+}
+
+let isExchange = false;
+function startReturn(exchange) {
+  isExchange = !!exchange;
+  addMsg('user', exchange ? 'Start an Exchange' : 'Start a Return');
+  clearButtons();
+  returnStep = 1;
+  chatState = 'return_collecting';
+  botSay('No problem at all! Let\'s get that started for you. First, please type your <strong>order number</strong>.', 700);
+}
+
+function handleReturnFlow(text) {
+  if (returnStep === 1) {
+    returnData.order = text;
+    returnStep = 2;
+    botSay('Got it. Now, please briefly describe the <strong>reason for the return</strong> (e.g. wrong size, item damaged, changed my mind).', 700);
+  } else if (returnStep === 2) {
+    returnData.reason = text;
+    returnStep = 3;
+    botSay(`Almost done! Would you prefer a <strong>refund</strong> to your original payment method, or an <strong>exchange</strong> for a different size or colour?`, 700, () => setButtons([
+      { label: 'Refund',   action: () => finishReturn('Refund') },
+      { label: 'Exchange', action: () => finishReturn('Exchange') }
+    ]));
+  }
+}
+
+function finishReturn(resolution) {
+  returnData.resolution = resolution;
+  returnStep = 0;
+  chatState = 'menu';
+  addMsg('user', resolution);
+  clearButtons();
+  botSay(
+    `Your return request has been <strong>successfully logged</strong>.<br><br>` +
+    `<strong>Order:</strong> ${returnData.order}<br>` +
+    `<strong>Reason:</strong> ${returnData.reason}<br>` +
+    `<strong>Resolution:</strong> ${resolution}<br><br>` +
+    `Our team will review your request and email you within <strong>24 hours</strong> with next steps. Thank you for your patience!`,
+    1000,
+    () => setButtons([
+      { label: 'Back to Menu', action: () => { addMsg('user','Back to Menu'); botSay('Is there anything else I can help you with today?', 400, showMainMenu); } }
+    ])
+  );
+}
+
+function flowShipping() {
+  chatState = 'shipping';
+  addMsg('user', 'Shipping Info');
+  clearButtons();
+  botSay(
+    '<strong>Nova Shop Shipping Options</strong><br><br>' +
+    '&bull; <strong>Standard Shipping</strong> — 5–7 business days &middot; $5.99<br>' +
+    '&bull; <strong>Express Shipping</strong> — 2–3 business days &middot; $12.99<br>' +
+    '&bull; <strong>Next Day Delivery</strong> — order before 2pm &middot; $19.99<br>' +
+    '&bull; <strong>Free Standard Shipping</strong> — on all orders over $75<br>' +
+    '&bull; <strong>International Shipping</strong> — available to 30+ countries, rates calculated at checkout<br><br>' +
+    'All orders are dispatched within 1 business day of payment confirmation.',
+    900,
+    () => setButtons([
+      { label: 'Track My Order', action: () => flowTrack() },
+      { label: 'Back to Menu',   action: () => { addMsg('user','Back to Menu'); botSay('Here\'s what else I can help with!', 400, showMainMenu); } }
+    ])
+  );
+}
+
+function flowContact() {
+  chatState = 'contact';
+  addMsg('user', 'Contact Support');
+  clearButtons();
+  botSay(
+    '<strong>Nova Shop Support Team</strong><br><br>' +
+    '&bull; <strong>Hours:</strong> Monday – Friday, 9am – 6pm<br>' +
+    '&bull; <strong>Email:</strong> support@novashop.com<br>' +
+    '&bull; <strong>Phone:</strong> +1 555 668 7890<br>' +
+    '&bull; <strong>Live Chat:</strong> Available on-site during support hours<br><br>' +
+    'For urgent matters, we aim to respond within <strong>2 hours</strong> during business hours. You can also reach us via this chat anytime!',
+    850,
+    () => setButtons([
+      { label: 'Back to Menu',  action: () => { addMsg('user','Back to Menu'); botSay('Is there anything else I can help you with?', 400, showMainMenu); } },
+      { label: 'Start New Chat', action: () => { addMsg('user','Start New Chat'); restartChat(); } }
+    ])
+  );
+}
+
+function restartChat() {
+  clearButtons();
+  chatState = 'start';
+  botSay('Starting a fresh conversation! How can I help you today?', 500, showMainMenu);
+}
+
+// ─── TEXT INPUT ─────────────────────────────────
+function sendUserText() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMsg('user', text);
+  clearButtons();
+
+  if (chatState === 'track') {
+    handleTracking(text);
+    chatState = 'menu';
+  } else if (chatState === 'return_collecting') {
+    handleReturnFlow(text);
+  } else {
+    // smart keyword fallback
+    const lower = text.toLowerCase();
+    if (lower.includes('track') || lower.includes('order')) {
+      flowTrack(); chatState = 'track';
+    } else if (lower.includes('return') || lower.includes('refund') || lower.includes('exchange')) {
+      flowReturns();
+    } else if (lower.includes('ship') || lower.includes('deliver')) {
+      flowShipping();
+    } else if (lower.includes('contact') || lower.includes('support') || lower.includes('help') || lower.includes('phone') || lower.includes('email')) {
+      flowContact();
+    } else if (lower.includes('shop') || lower.includes('buy') || lower.includes('dress') || lower.includes('shirt') || lower.includes('bag') || lower.includes('product')) {
+      flowShop();
+    } else {
+      botSay(
+        'I\'m here to help! I can assist you with shopping, order tracking, returns, shipping info, or connecting you with our support team.',
+        600,
+        showMainMenu
+      );
+    }
+  }
+}
+
+// ─── TOGGLE ─────────────────────────────────────
+function toggleChat() {
+  chatOpen = !chatOpen;
+  const win = document.getElementById('chat-window');
+  const iconChat = document.getElementById('icon-chat');
+  const iconClose = document.getElementById('icon-close');
+  const notif = document.getElementById('chat-notif');
+  const promo = document.getElementById('chat-promo');
+
+  if (chatOpen) {
+    win.classList.add('open');
+    iconChat.style.display = 'none';
+    iconClose.style.display = 'block';
+    notif.style.display = 'none';
+    if (promo) promo.style.display = 'none';
+    if (document.getElementById('chat-messages').children.length === 0) {
+      flowStart();
+    }
+  } else {
+    win.classList.remove('open');
+    iconChat.style.display = 'block';
+    iconClose.style.display = 'none';
+  }
+}
+
+// hide promo after 6s
+setTimeout(() => {
+  const p = document.getElementById('chat-promo');
+  if (p) p.style.opacity = '0';
+  setTimeout(() => { if (p) p.style.display = 'none'; }, 500);
+}, 6000);
+</script>
+</body>
+</html>
