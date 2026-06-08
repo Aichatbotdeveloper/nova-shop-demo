@@ -623,7 +623,7 @@ function respondToNovaIntent(intent) {
       ]));
       break;
     case 'budget':
-      botSay('Great question. Our most affordable items start at $24 in our Sale section, with sale items up to 50% off. Men's fashion starts from $28 and accessories from $35. Unfortunately we do not currently have items under $24. Would you like to see our sale items or most affordable picks?', 750, () => setButtons([
+      botSay("Great question. Our most affordable items start at $24 in our Sale section, with sale items up to 50% off. Our cheapest items include the Graphic Print T-Shirt at $28 and Canvas Tote Bag at $24 in the sale. Would you like to see our sale items or most affordable picks?", 750, () => setButtons([
         { label: 'See Sale Items',  action: () => { addMsg('user','See Sale Items'); showCategory('sale'); } },
         { label: 'See Accessories', action: () => { addMsg('user','Accessories'); showCategory('accessories'); } },
         { label: 'Back to Menu',    action: () => { addMsg('user','Back to Menu'); botSay('Here is the main menu.', 400, showMainMenu); } }
